@@ -152,3 +152,20 @@ exports.findAllPublished = (req, res) => {
       });
     });
 };
+
+
+// find all published Produto
+exports.findByRestaurante = (req, res) => {
+  const id = req.params.id;
+
+  Produto.findAll({ where: { restaurante_id: id } })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving Produtos."
+      });
+    });
+};

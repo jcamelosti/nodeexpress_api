@@ -19,5 +19,8 @@ const produtos = require("../controllers/produto.controller.js");
 
  // Delete all Produtos
  router.delete("/", produtos.deleteAll);
- 
+
+// Retrieve all Produtos
+router.get("/restaurante/:id", produtos.findByRestaurante);
+
 module.exports = router;
