@@ -4,7 +4,7 @@ const cors = require("cors");
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "http://localhost:8080"
 };
 
 app.use(cors(corsOptions));
@@ -32,12 +32,19 @@ db.sequelize.sync()
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json({ message: "API Ok!!" });
 });
 
-require("./app/routes/turorial.routes")(app);
-require("./app/routes/restaurantes.routes")(app);
-require("./app/routes/produtos.routes")(app);
+//require("./app/routes/turorial.routes")(app);
+
+const tutoriais = require("./app/routes/turorial.routes");
+app.use('/api/tutoriais', tutoriais);
+
+const restaurantes = require("./app/routes/restaurantes.routes");
+app.use('/api/restaurantes', restaurantes);
+
+const produtos = require("./app/routes/produtos.routes");
+app.use('/api/produtos', produtos);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

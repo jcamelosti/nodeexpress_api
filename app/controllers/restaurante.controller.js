@@ -1,5 +1,5 @@
 const db = require("../models");
-const Tutorial = db.tutorials;
+const Restaurante = db.restaurantes;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Tutorial
@@ -13,14 +13,14 @@ exports.create = (req, res) => {
   }
 
   // Create a Tutorial
-  const tutorial = {
+  const rec = {
     title: req.body.title,
     description: req.body.description,
     published: req.body.published ? req.body.published : false
   };
 
   // Save Tutorial in the database
-  Tutorial.create(tutorial)
+  Restaurante.create(rec)
     .then(data => {
       res.send(data);
     })
@@ -37,7 +37,7 @@ exports.findAll = (req, res) => {
   const title = req.query.title;
   var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
 
-  Tutorial.findAll({ where: condition })
+  Restaurante.findAll({ where: condition })
     .then(data => {
       res.send(data);
     })
@@ -53,7 +53,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Tutorial.findByPk(id)
+  Restaurante.findByPk(id)
     .then(data => {
       if (data) {
         res.send(data);
@@ -74,7 +74,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const id = req.params.id;
 
-  Tutorial.update(req.body, {
+  Restaurante.update(req.body, {
     where: { id: id }
   })
     .then(num => {
@@ -99,7 +99,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  Tutorial.destroy({
+  Restaurante.destroy({
     where: { id: id }
   })
     .then(num => {
@@ -122,7 +122,7 @@ exports.delete = (req, res) => {
 
 // Delete all Tutorials from the database.
 exports.deleteAll = (req, res) => {
-  Tutorial.destroy({
+  Restaurante.destroy({
     where: {},
     truncate: false
   })
@@ -139,7 +139,7 @@ exports.deleteAll = (req, res) => {
 
 // find all published Tutorial
 exports.findAllPublished = (req, res) => {
-  Tutorial.findAll({ where: { published: true } })
+  Restaurante.findAll({ where: { published: true } })
     .then(data => {
       res.send(data);
     })
