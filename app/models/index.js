@@ -19,7 +19,6 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.tutorials = require("./tutorial.model.js")(sequelize, Sequelize);
 db.restaurantes = require("./restaurantes.model.js")(sequelize, Sequelize);
 db.produtos = require("./produtos.model.js")(sequelize, Sequelize);
 

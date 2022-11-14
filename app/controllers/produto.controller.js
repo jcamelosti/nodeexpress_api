@@ -4,8 +4,6 @@ const Op = db.Sequelize.Op;
 
 // Create and Save a new Produto
 exports.create = (req, res) => {
-  console.log(req.body);
-  
   // Validate request
   if (!req.body.nome) {
     res.status(400).send({

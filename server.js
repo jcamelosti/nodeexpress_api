@@ -35,11 +35,6 @@ app.get("/", (req, res) => {
   res.json({ message: "API Ok!!" });
 });
 
-//require("./app/routes/turorial.routes")(app);
-
-const tutoriais = require("./app/routes/turorial.routes");
-app.use('/api/tutoriais', tutoriais);
-
 const restaurantes = require("./app/routes/restaurantes.routes");
 app.use('/api/restaurantes', restaurantes);
 
